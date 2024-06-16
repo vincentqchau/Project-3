@@ -8,6 +8,7 @@ class LoadBalancer {
     private:
         std::vector<Webserver*> servers;
         std::queue<Request> requests;
+        int total_wait_time;
 
     public:
         LoadBalancer();
@@ -16,5 +17,6 @@ class LoadBalancer {
         void addServer(Webserver* server);
         void removeServer(Webserver* server);
         void clear();
+        void getWaitTime();
 
 };

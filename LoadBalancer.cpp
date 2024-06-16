@@ -9,13 +9,16 @@ LoadBalancer::LoadBalancer() {
 
 void LoadBalancer::addRequest(Request req) {
     requests.push(req);
+    total_wait_time+=req.get_process_time();
 }
 
 void LoadBalancer::processRequests() {
     for (int i = 0; i < servers.size(); i++) {
         if(servers[i]->get_curr_req() == NULL) {
             if(!requests.empty()) {
-                servers[i]->set_curr_req(&requests.front());
+                Request next_req = requests.front();
+                servers[i]->set_curr_req(&next_req);
+                total_wait_time-=next_req.get_process_time();
                 requests.pop();
             }
         } else {
@@ -23,7 +26,9 @@ void LoadBalancer::processRequests() {
                 if(requests.empty()) {
                     servers[i]->set_curr_req(NULL);
                 } else {
-                    servers[i]->set_curr_req(&requests.front());
+                    Request next_req = requests.front();
+                    servers[i]->set_curr_req(&next_req);
+                    total_wait_time-=next_req.get_process_time();
                     requests.pop();
                 }
             }

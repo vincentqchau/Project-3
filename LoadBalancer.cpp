@@ -30,3 +30,20 @@ void LoadBalancer::processRequests() {
         }
     }
 }
+
+void LoadBalancer::addServer(Webserver* server) {
+    servers.push_back(server);
+}
+
+void LoadBalancer::removeServer(Webserver* server) {
+    for(int i = 0; i < servers.size(); i++) {
+        if(servers[i] == server) {
+            servers.erase(servers.begin() + i);
+        }
+    }
+}
+
+void LoadBalancer::clear() {
+    servers.clear();
+}
+

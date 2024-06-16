@@ -13,7 +13,8 @@ class LoadBalancer {
         LoadBalancer();
         void addRequest(Request req);
         void processRequests();
-        void addServer(Webserver server);
-        void removeServer(Webserver server);
+        void addServer(Webserver* server);
+        void removeServer(Webserver* server);
+        void clear();
 
 };

@@ -9,6 +9,7 @@ Webserver::Webserver() {
 
 void Webserver::set_curr_req(Request* req) {
     curr_req = req;
+    curr_time = 0;
 }
 
 Request* Webserver::get_curr_req() {

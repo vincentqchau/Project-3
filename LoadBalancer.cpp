@@ -70,6 +70,7 @@ void LoadBalancer::addServer(Webserver* server) {
     servers.push_back(server);
 }
 
+
 void LoadBalancer::removeServer() {
     // Remove the first idle server found
     auto it = find_if(servers.begin(), servers.end(), [](Webserver* server){ return !server->get_is_busy(); });

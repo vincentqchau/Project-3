@@ -1,0 +1,104 @@
+\hypertarget{classRequest}{}\doxysection{Request Class Reference}
+\label{classRequest}\index{Request@{Request}}
+
+
+Represents a network request with input and output IP addresses and processing time.  
+
+
+
+
+{\ttfamily \#include $<$Request.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRequest_afaf8d8928de7ffff8a3767589489bd33}\label{classRequest_afaf8d8928de7ffff8a3767589489bd33}} 
+\mbox{\hyperlink{classRequest_afaf8d8928de7ffff8a3767589489bd33}{Request}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing an empty request. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequest_a136c5b74a5f7411c06d08af13803ce5c}{Request}} (std\+::string in, std\+::string out, int time)
+\begin{DoxyCompactList}\small\item\em Constructs a request with specified input and output IPs and processing time. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRequest_a89382b329cba26ea5d3b436676a52fa3}{get\+\_\+ip\+\_\+in}} ()
+\begin{DoxyCompactList}\small\item\em Gets the input IP address of the request. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRequest_a64e1afc54c4fbbf235a75c4b587e84ab}{get\+\_\+ip\+\_\+out}} ()
+\begin{DoxyCompactList}\small\item\em Gets the output IP address of the request. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classRequest_ae49709166764394691f05c4486c1c4b9}{get\+\_\+process\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Gets the processing time of the request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRequest_a8d7a6d2c27eff9904fdbf78abe51e6b1}\label{classRequest_a8d7a6d2c27eff9904fdbf78abe51e6b1}} 
+void \mbox{\hyperlink{classRequest_a8d7a6d2c27eff9904fdbf78abe51e6b1}{process}} ()
+\begin{DoxyCompactList}\small\item\em Simulates the processing of the request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRequest_ab5632e2d7ef236ab4f5f223a0d857b31}\label{classRequest_ab5632e2d7ef236ab4f5f223a0d857b31}} 
+void \mbox{\hyperlink{classRequest_ab5632e2d7ef236ab4f5f223a0d857b31}{print}} ()
+\begin{DoxyCompactList}\small\item\em Prints the request details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a network request with input and output IP addresses and processing time. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRequest_a136c5b74a5f7411c06d08af13803ce5c}\label{classRequest_a136c5b74a5f7411c06d08af13803ce5c}} 
+\index{Request@{Request}!Request@{Request}}
+\index{Request@{Request}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{Request()}{Request()}}
+{\footnotesize\ttfamily Request\+::\+Request (\begin{DoxyParamCaption}\item[{std\+::string}]{in,  }\item[{std\+::string}]{out,  }\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+Constructs a request with specified input and output IPs and processing time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Input IP address. \\
+\hline
+{\em out} & Output IP address. \\
+\hline
+{\em time} & Processing time for the request. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRequest_a89382b329cba26ea5d3b436676a52fa3}\label{classRequest_a89382b329cba26ea5d3b436676a52fa3}} 
+\index{Request@{Request}!get\_ip\_in@{get\_ip\_in}}
+\index{get\_ip\_in@{get\_ip\_in}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{get\_ip\_in()}{get\_ip\_in()}}
+{\footnotesize\ttfamily string Request\+::get\+\_\+ip\+\_\+in (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the input IP address of the request. 
+
+\begin{DoxyReturn}{Returns}
+Input IP address as a string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRequest_a64e1afc54c4fbbf235a75c4b587e84ab}\label{classRequest_a64e1afc54c4fbbf235a75c4b587e84ab}} 
+\index{Request@{Request}!get\_ip\_out@{get\_ip\_out}}
+\index{get\_ip\_out@{get\_ip\_out}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{get\_ip\_out()}{get\_ip\_out()}}
+{\footnotesize\ttfamily string Request\+::get\+\_\+ip\+\_\+out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the output IP address of the request. 
+
+\begin{DoxyReturn}{Returns}
+Output IP address as a string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRequest_ae49709166764394691f05c4486c1c4b9}\label{classRequest_ae49709166764394691f05c4486c1c4b9}} 
+\index{Request@{Request}!get\_process\_time@{get\_process\_time}}
+\index{get\_process\_time@{get\_process\_time}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{get\_process\_time()}{get\_process\_time()}}
+{\footnotesize\ttfamily int Request\+::get\+\_\+process\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the processing time of the request. 
+
+\begin{DoxyReturn}{Returns}
+Processing time as an integer. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Request_8h}{Request.\+h}}\item 
+Request.\+cpp\end{DoxyCompactItemize}

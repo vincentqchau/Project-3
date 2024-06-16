@@ -1,0 +1,33 @@
+\hypertarget{LoadBalancer_8h}{}\doxysection{Load\+Balancer.\+h File Reference}
+\label{LoadBalancer_8h}\index{LoadBalancer.h@{LoadBalancer.h}}
+
+
+Defines the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} class, which manages a pool of web servers to distribute incoming requests evenly.  
+
+
+{\ttfamily \#include \char`\"{}Webserver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Request.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include \char`\"{}Globals.\+h\char`\"{}}\newline
+Include dependency graph for Load\+Balancer.\+h\+:
+% FIG 0
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}}
+\begin{DoxyCompactList}\small\item\em Manages a pool of web servers, distributing incoming requests among them to balance the load. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{LoadBalancer_8h_a5c3b4414a351bdc0f8b4256f2e19e680}\label{LoadBalancer_8h_a5c3b4414a351bdc0f8b4256f2e19e680}} 
+\#define \mbox{\hyperlink{LoadBalancer_8h_a5c3b4414a351bdc0f8b4256f2e19e680}{MIN\+\_\+\+REQUESTS\+\_\+\+PER\+\_\+\+SERVER}}~5;
+\begin{DoxyCompactList}\small\item\em Defines the minimum number of requests a server must handle before it\textquotesingle{}s considered to be under heavy load. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{LoadBalancer_8h_a362c1232873950d65ea8068e6e961c16}\label{LoadBalancer_8h_a362c1232873950d65ea8068e6e961c16}} 
+\#define \mbox{\hyperlink{LoadBalancer_8h_a362c1232873950d65ea8068e6e961c16}{MAX\+\_\+\+REQUESTS\+\_\+\+PER\+\_\+\+SERVER}}~20;
+\begin{DoxyCompactList}\small\item\em Sets the maximum number of requests a server can handle before it stops accepting new requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} class, which manages a pool of web servers to distribute incoming requests evenly. 
+

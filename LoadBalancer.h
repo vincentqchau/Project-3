@@ -3,6 +3,9 @@
 #include <vector>
 #include <queue>
 
+#define MIN_REQUESTS_PER_SERVER 5;
+#define MAX_REQUESTS_PER_SERVER 25;
+
 class LoadBalancer {
 
     private:
@@ -17,6 +20,7 @@ class LoadBalancer {
         void addServer(Webserver* server);
         void removeServer(Webserver* server);
         void clear();
-        void getWaitTime();
+        int getWaitTime();
+        void adjustServers();
 
 };

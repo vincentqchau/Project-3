@@ -1,26 +1,87 @@
 #include <iostream>
 #include <unistd.h>
+#include <Webserver.h>
+#include <vector>
+#include <LoadBalancer.h>
+#include <cmath>
+#include <random>
+#include <Request.h>
+
+#define MAX_LOAD_PER_BALANCER 20
 
 using namespace std;
 
+string generateIP() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(0, 255);
+    string ip = to_string(dis(gen)) + "." + to_string(dis(gen)) + "." + to_string(dis(gen)) + "." + to_string(dis(gen));
+    return ip;
+}
+
+Request generateRequests() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(5, 50);
+    Request req = Request(generateIP(), generateIP(), dis(gen));
+    return req;
+}
+
+vector<Request> generateRequests(int numRequests) {
+    vector<Request> reqs;
+    for(int i = 0; i < numRequests; i++) {
+        Request req = generateRequests();
+        reqs.push_back(req);
+    }
+    return reqs;
+}
+
+void addRequestToBalancer(vector<LoadBalancer>& balancers, Request req) {
+    if(balancers.empty()) return;
+    LoadBalancer* minBalancer = &balancers[0];
+    int minWaitTime = minBalancer->getWaitTime();
+    for(LoadBalancer balancer : balancers) {
+        if(balancer.getWaitTime() < minWaitTime) {
+            minBalancer = &balancer;
+            minWaitTime = balancer.getWaitTime();
+        }
+    }
+}
+
 int main(int argc, char* argv[]) {
     int opt;
-    int servers = 0, time = 0;
+    int numServers = 0, time = 0;
     while((opt = getopt(argc, argv, "s:t:")) != -1) {
         switch(opt) {
             case 's':
-                servers = atoi(optarg);
+                numServers = atoi(optarg);
                 break;
             case 't':
                 time = atoi(optarg);
                 break;
         }
     }
-    if(servers == 0 || time == 0) {
+    if(numServers == 0 || time == 0) {
         cout << "Usage: ./Driver -s <servers> -t <time>" << endl;
     } else {
-        //create webservers
-        
         //create load balancers
+        vector<LoadBalancer> balancers;
+        int totalLoad = numServers * 100;
+        int numBalancers = ceil(totalLoad / MAX_LOAD_PER_BALANCER);
+        for(int i = 0; i < numBalancers; i++) {
+            LoadBalancer balancer = LoadBalancer();
+            balancers.push_back(balancer);
+        }
+        //add servers to balancers;
+        for(int i = 0; i < numServers; i++) {
+            Webserver* server = new Webserver();
+            balancers[i % numBalancers].addServer(server);
+        }
+        //create full qeuue of requests
+        vector<Request> requests = generateRequests(totalLoad);
+        //add requests to balancers
+        for(Request req : requests) {
+            addRequestToBalancer(balancers, req);
+        }
     }
 }

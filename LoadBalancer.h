@@ -4,7 +4,7 @@
 #include <queue>
 
 #define MIN_REQUESTS_PER_SERVER 5;
-#define MAX_REQUESTS_PER_SERVER 25;
+#define MAX_REQUESTS_PER_SERVER 15;
 
 class LoadBalancer {
 
@@ -22,5 +22,7 @@ class LoadBalancer {
         void clear();
         int getWaitTime();
         void adjustServers();
-
+        void sendRequestToServer(Webserver* server);
+        void logRequestStart(Request req);
+        void logRequestFinish(Request req);
 };

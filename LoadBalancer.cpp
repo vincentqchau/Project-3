@@ -1,6 +1,8 @@
 #include <LoadBalancer.h>
 #include <algorithm>
 #include <chrono>
+#include <fstream>
+#include <Globals.h>
 
 using namespace std;
 
@@ -14,25 +16,26 @@ void LoadBalancer::addRequest(Request req) {
     total_wait_time+=req.get_process_time();
 }
 
+void LoadBalancer::sendRequestToServer(Webserver* server) {
+    Request next_req = requests.front();
+    server->set_curr_req(&next_req);
+    server-> set_is_busy(true);
+    total_wait_time-=next_req.get_process_time();
+    requests.pop();
+    //log request in text file
+} 
+
 void LoadBalancer::processRequests() {
     for (int i = 0; i < servers.size(); i++) {
         if(!servers[i]->get_is_busy() && !requests.empty()) {
-            Request next_req = requests.front();
-            servers[i]->set_curr_req(&next_req);
-            servers[i]-> set_is_busy(true);
-            total_wait_time-=next_req.get_process_time();
-            requests.pop();
+            sendRequestToServer(servers[i]);
         } else {
             if(servers[i]->process_req()) {
                 if(requests.empty()) {
                     servers[i]->set_curr_req(NULL);
                     servers[i]-> set_is_busy(false);
                 } else {
-                    Request next_req = requests.front();
-                    servers[i]->set_curr_req(&next_req);
-                    servers[i]-> set_is_busy(true);
-                    total_wait_time-=next_req.get_process_time();
-                    requests.pop();
+                    sendRequestToServer(servers[i]);
                 }
             }
         }
@@ -87,5 +90,22 @@ void LoadBalancer::clear() {
 
 int LoadBalancer::getWaitTime() {
     return total_wait_time;
+}
+
+void LoadBalancer::logRequestStart(Request req) {
+    //write to log.txt file
+    std::ofstream logFile("log.txt", std::ios::app);
+    if(logFile.is_open()) {
+        logFile << "[" << clock_cycle << "] START Request from " << req.get_ip_in() << " to " << req.get_ip_out() << endl;
+        logFile.close(); 
+    }
+}
+
+void LoadBalancer::logRequestFinish(Request req) {
+    std::ofstream logFile("log.txt", std::ios::app);
+    if(logFile.is_open()) {
+        logFile << "[" << clock_cycle << "] FINISH Request from " << req.get_ip_in() << " to " << req.get_ip_out() << endl;
+        logFile.close(); 
+    }
 }
 

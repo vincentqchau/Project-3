@@ -1,18 +1,23 @@
 CC = g++
 
-CFLAGS = -Wall -Wextra -fsanitize=undefined,address -std=c++17
+CFLAGS = -Wall -Wextra -fsanitize=address,undefined -std=c++17
 
 all: sim
 
-sim: driver.o request.o
-	$(CC) $(CFLAGS) -o sim driver.o request.o
+sim: Driver.o Webserver.o Request.o LoadBalancer.o
+	$(CC) $(CFLAGS) -o sim Driver.o Webserver.o Request.o LoadBalancer.o
 
-driver.o: Driver.cpp
-	$(CC) $(CFLAGS) -c Driver.cpp
+Driver.o: Driver.cpp
+	$(CC) $(CFLAGS) -c Driver.cpp -o Driver.o
 
-request.o: Request.cpp Request.h
-	$(CC) $(CFLAGS) -c Request.cpp
+Request.o: Request.cpp Request.h
+	$(CC) $(CFLAGS) -c Request.cpp -o Request.o
+
+LoadBalancer.o: LoadBalancer.cpp LoadBalancer.h
+	$(CC) $(CFLAGS) -c LoadBalancer.cpp -o LoadBalancer.o
+
+Webserver.o: Webserver.cpp Webserver.h
+	$(CC) $(CFLAGS) -c Webserver.cpp -o Webserver.o
 
 clean:
-	rm -f *.o sim
-
+	rm -f *.o sim log.txt

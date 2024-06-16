@@ -6,10 +6,31 @@
 #include <cmath>
 #include <random>
 #include <Request.h>
+#include <Globals.h>
 
-#define MAX_LOAD_PER_BALANCER 20
+#define MAX_LOAD_PER_BALANCER 75
 
 using namespace std;
+
+int clock_cycle = 0;
+
+void simulate(int time, vector<LoadBalancer>& balancers) {
+    while(clock_cycle < time) {
+        for(LoadBalancer balancer : balancers) {
+            balancer.processRequests();
+        }
+        //randomly add new requests
+        //give 1/5 chance of a new request being made
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dis(1, 5);
+        if(dis(gen) == 1) {
+            Request req = generateRequests();
+            addRequestToBalancer(balancers, req);
+        }
+        clock_cycle++;     
+    }
+}
 
 string generateIP() {
     random_device rd;
@@ -83,5 +104,7 @@ int main(int argc, char* argv[]) {
         for(Request req : requests) {
             addRequestToBalancer(balancers, req);
         }
+        //simulate load balancing
+        simulate(time, balancers);
     }
 }

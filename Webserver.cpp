@@ -1,25 +1,27 @@
-#include <Webserver.h>
+#include "Webserver.h"
+#include <iostream>
 
 using namespace std;
 
 Webserver::Webserver() {
-    curr_req = NULL;
-    curr_time = 0;
+    curr_req = Request();
     is_busy = false;
 }
 
-void Webserver::set_curr_req(Request* req) {
+void Webserver::set_curr_req(Request req) {
     curr_req = req;
-    curr_time = 0;
 }
 
-Request* Webserver::get_curr_req() {
+Request Webserver::get_curr_req() {
     return curr_req;
 }
 
-bool Webserver::process_req() {
-    curr_time++;
-    return curr_time == curr_req->get_process_time();
+void Webserver::process_req() {
+    curr_req.process();
+}
+
+bool Webserver::request_is_done() {
+    return curr_req.get_process_time() == 0;
 }
 
 void Webserver::set_is_busy(bool busy) {

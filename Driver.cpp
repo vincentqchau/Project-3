@@ -1,36 +1,20 @@
 #include <iostream>
 #include <unistd.h>
-#include <Webserver.h>
-#include <vector>
-#include <LoadBalancer.h>
 #include <cmath>
 #include <random>
-#include <Request.h>
-#include <Globals.h>
+#include <vector>
+#include <string>
 
-#define MAX_LOAD_PER_BALANCER 75
+#include "Webserver.h"
+#include "LoadBalancer.h"
+#include "Request.h"
+#include "Globals.h"
+
+#define MAX_LOAD_PER_BALANCER 20
 
 using namespace std;
 
-int clock_cycle = 0;
-
-void simulate(int time, vector<LoadBalancer>& balancers) {
-    while(clock_cycle < time) {
-        for(LoadBalancer balancer : balancers) {
-            balancer.processRequests();
-        }
-        //randomly add new requests
-        //give 1/5 chance of a new request being made
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_int_distribution<> dis(1, 5);
-        if(dis(gen) == 1) {
-            Request req = generateRequests();
-            addRequestToBalancer(balancers, req);
-        }
-        clock_cycle++;     
-    }
-}
+int clock_cycle = 1;
 
 string generateIP() {
     random_device rd;
@@ -43,8 +27,9 @@ string generateIP() {
 Request generateRequests() {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(5, 50);
-    Request req = Request(generateIP(), generateIP(), dis(gen));
+    uniform_int_distribution<> dis(5, 10);
+    int processTime = dis(gen);
+    Request req = Request(generateIP(), generateIP(), processTime);
     return req;
 }
 
@@ -61,12 +46,34 @@ void addRequestToBalancer(vector<LoadBalancer>& balancers, Request req) {
     if(balancers.empty()) return;
     LoadBalancer* minBalancer = &balancers[0];
     int minWaitTime = minBalancer->getWaitTime();
-    for(LoadBalancer balancer : balancers) {
+    for(LoadBalancer& balancer : balancers) { // Use reference here
         if(balancer.getWaitTime() < minWaitTime) {
             minBalancer = &balancer;
             minWaitTime = balancer.getWaitTime();
         }
     }
+    minBalancer->addRequest(req);
+}
+
+void simulate(int time, vector<LoadBalancer>& balancers) {
+    while(clock_cycle <= time) {
+        for(LoadBalancer balancer : balancers) {
+            balancer.processRequests();
+        }
+        //randomly add new requests
+        //give 1/5 chance of a new request being made
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dis(1, 5);
+        if(dis(gen) == 1) {
+            Request req = generateRequests();
+            addRequestToBalancer(balancers, req);
+        }
+        clock_cycle++;     
+    }
+    for(LoadBalancer balancer : balancers) {
+        balancer.clearServers();
+    } 
 }
 
 int main(int argc, char* argv[]) {

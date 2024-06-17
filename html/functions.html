@@ -66,16 +66,16 @@ $(function() {
 : <a class="el" href="classLoadBalancer.html#ac1e1ed080cba145743b288f0a5b21307">LoadBalancer</a>
 </li>
 <li>addServer()
-: <a class="el" href="classLoadBalancer.html#a7efeb4350d08ca894a9e217c245b7425">LoadBalancer</a>
+: <a class="el" href="classLoadBalancer.html#a32f3f33a319622cf83b41cb9fcd09d3c">LoadBalancer</a>
 </li>
 <li>adjustServers()
 : <a class="el" href="classLoadBalancer.html#aff44540ffdb26bff9ff3cd890f667c5b">LoadBalancer</a>
 </li>
+<li>all_servers_idle()
+: <a class="el" href="classLoadBalancer.html#ab132785ef9e632015af163331177af8e">LoadBalancer</a>
+</li>
 <li>clearServers()
 : <a class="el" href="classLoadBalancer.html#aef36343e996355888619a1559dddf5d8">LoadBalancer</a>
-</li>
-<li>get_curr_req()
-: <a class="el" href="classWebserver.html#a94634ea193283a70b40f1cf111b7cbb6">Webserver</a>
 </li>
 <li>get_ip_in()
 : <a class="el" href="classRequest.html#a89382b329cba26ea5d3b436676a52fa3">Request</a>
@@ -83,23 +83,29 @@ $(function() {
 <li>get_ip_out()
 : <a class="el" href="classRequest.html#a64e1afc54c4fbbf235a75c4b587e84ab">Request</a>
 </li>
-<li>get_is_busy()
-: <a class="el" href="classWebserver.html#ac503bbab41fb0a3858fcaa0d7c10b42b">Webserver</a>
-</li>
 <li>get_process_time()
 : <a class="el" href="classRequest.html#ae49709166764394691f05c4486c1c4b9">Request</a>
 </li>
-<li>getWaitTime()
-: <a class="el" href="classLoadBalancer.html#ade661500dac55cf1afcda5ce83fc7138">LoadBalancer</a>
+<li>getQueueSize()
+: <a class="el" href="classLoadBalancer.html#ac104e708c3d8a6984122d9a0df13b80b">LoadBalancer</a>
+</li>
+<li>getRequest()
+: <a class="el" href="classWebserver.html#a4632f99b969719d94eb0dcb616ae9312">Webserver</a>
+</li>
+<li>getServerCount()
+: <a class="el" href="classLoadBalancer.html#a8e73dc5d30ddba1a041dc005e42726a8">LoadBalancer</a>
+</li>
+<li>getServerId()
+: <a class="el" href="classWebserver.html#abc3f73506968b010306163e8c8617d9b">Webserver</a>
+</li>
+<li>isBusy()
+: <a class="el" href="classWebserver.html#a9ad4aa45c1016f57e8489d36c498fcc0">Webserver</a>
+</li>
+<li>isRequestDone()
+: <a class="el" href="classWebserver.html#aa1f04a31c62d0a208919b0ebd8547e80">Webserver</a>
 </li>
 <li>LoadBalancer()
 : <a class="el" href="classLoadBalancer.html#a6e6669a6a4f0c3df345a13246b17a84b">LoadBalancer</a>
-</li>
-<li>logRequestFinish()
-: <a class="el" href="classLoadBalancer.html#a2f9be4e46d36b9bd2022f420e045b145">LoadBalancer</a>
-</li>
-<li>logRequestStart()
-: <a class="el" href="classLoadBalancer.html#a78eed4bcc19bb5e2620e6b6f82b75735">LoadBalancer</a>
 </li>
 <li>print()
 : <a class="el" href="classRequest.html#ab5632e2d7ef236ab4f5f223a0d857b31">Request</a>
@@ -107,32 +113,26 @@ $(function() {
 <li>process()
 : <a class="el" href="classRequest.html#a8d7a6d2c27eff9904fdbf78abe51e6b1">Request</a>
 </li>
-<li>process_req()
-: <a class="el" href="classWebserver.html#a3a5ab2413bd450a99264faf54d0b255a">Webserver</a>
+<li>processRequest()
+: <a class="el" href="classWebserver.html#ad8e5f2cc6853ac0177a5131d6132c165">Webserver</a>
 </li>
 <li>processRequests()
 : <a class="el" href="classLoadBalancer.html#a11084cbdda9101abfc893a71f046045b">LoadBalancer</a>
 </li>
-<li>removeServer()
-: <a class="el" href="classLoadBalancer.html#a2f77281d168914e6bbe1857a0cd84d25">LoadBalancer</a>
-</li>
 <li>Request()
 : <a class="el" href="classRequest.html#afaf8d8928de7ffff8a3767589489bd33">Request</a>
-</li>
-<li>request_is_done()
-: <a class="el" href="classWebserver.html#a1a984d64acee6a5a583dcbf4ea4b259b">Webserver</a>
 </li>
 <li>sendRequestToServer()
 : <a class="el" href="classLoadBalancer.html#a2b7fc4e11b7c0b53e0cdb165a95bacda">LoadBalancer</a>
 </li>
-<li>set_curr_req()
-: <a class="el" href="classWebserver.html#ad72f611ee5035d56ac64fa46fc7b5687">Webserver</a>
+<li>setIsBusy()
+: <a class="el" href="classWebserver.html#ab24022731879a7f5ce09fd56f04fa11d">Webserver</a>
 </li>
-<li>set_is_busy()
-: <a class="el" href="classWebserver.html#a1874adf06a6c3fed43de656e97961f41">Webserver</a>
+<li>setRequest()
+: <a class="el" href="classWebserver.html#ae7079b8cb6c02b653cc0c9266652ba47">Webserver</a>
 </li>
 <li>Webserver()
-: <a class="el" href="classWebserver.html#ac2a6f51bcc54efaaf5f4773a7c24f009">Webserver</a>
+: <a class="el" href="classWebserver.html#add144149d7c5a692dd21c92fb366319a">Webserver</a>
 </li>
 </ul>
 </div><!-- contents -->

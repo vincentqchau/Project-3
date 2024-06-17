@@ -76,41 +76,71 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac2a6f51bcc54efaaf5f4773a7c24f009"><td class="memItemLeft" align="right" valign="top"><a id="ac2a6f51bcc54efaaf5f4773a7c24f009"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#ac2a6f51bcc54efaaf5f4773a7c24f009">Webserver</a> ()</td></tr>
-<tr class="memdesc:ac2a6f51bcc54efaaf5f4773a7c24f009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classWebserver.html" title="Represents a web server that can process requests.">Webserver</a> instance, initially not busy. <br /></td></tr>
-<tr class="separator:ac2a6f51bcc54efaaf5f4773a7c24f009"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad72f611ee5035d56ac64fa46fc7b5687"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#ad72f611ee5035d56ac64fa46fc7b5687">set_curr_req</a> (<a class="el" href="classRequest.html">Request</a> req)</td></tr>
-<tr class="memdesc:ad72f611ee5035d56ac64fa46fc7b5687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current request for the web server to process.  <a href="classWebserver.html#ad72f611ee5035d56ac64fa46fc7b5687">More...</a><br /></td></tr>
-<tr class="separator:ad72f611ee5035d56ac64fa46fc7b5687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94634ea193283a70b40f1cf111b7cbb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRequest.html">Request</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#a94634ea193283a70b40f1cf111b7cbb6">get_curr_req</a> ()</td></tr>
-<tr class="memdesc:a94634ea193283a70b40f1cf111b7cbb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current request being processed by the web server.  <a href="classWebserver.html#a94634ea193283a70b40f1cf111b7cbb6">More...</a><br /></td></tr>
-<tr class="separator:a94634ea193283a70b40f1cf111b7cbb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a5ab2413bd450a99264faf54d0b255a"><td class="memItemLeft" align="right" valign="top"><a id="a3a5ab2413bd450a99264faf54d0b255a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#a3a5ab2413bd450a99264faf54d0b255a">process_req</a> ()</td></tr>
-<tr class="memdesc:a3a5ab2413bd450a99264faf54d0b255a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the processing of the current request. <br /></td></tr>
-<tr class="separator:a3a5ab2413bd450a99264faf54d0b255a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1874adf06a6c3fed43de656e97961f41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#a1874adf06a6c3fed43de656e97961f41">set_is_busy</a> (bool busy)</td></tr>
-<tr class="memdesc:a1874adf06a6c3fed43de656e97961f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the busy status of the web server.  <a href="classWebserver.html#a1874adf06a6c3fed43de656e97961f41">More...</a><br /></td></tr>
-<tr class="separator:a1874adf06a6c3fed43de656e97961f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac503bbab41fb0a3858fcaa0d7c10b42b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#ac503bbab41fb0a3858fcaa0d7c10b42b">get_is_busy</a> ()</td></tr>
-<tr class="memdesc:ac503bbab41fb0a3858fcaa0d7c10b42b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the busy status of the web server.  <a href="classWebserver.html#ac503bbab41fb0a3858fcaa0d7c10b42b">More...</a><br /></td></tr>
-<tr class="separator:ac503bbab41fb0a3858fcaa0d7c10b42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a984d64acee6a5a583dcbf4ea4b259b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#a1a984d64acee6a5a583dcbf4ea4b259b">request_is_done</a> ()</td></tr>
-<tr class="memdesc:a1a984d64acee6a5a583dcbf4ea4b259b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current request has finished processing.  <a href="classWebserver.html#a1a984d64acee6a5a583dcbf4ea4b259b">More...</a><br /></td></tr>
-<tr class="separator:a1a984d64acee6a5a583dcbf4ea4b259b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add144149d7c5a692dd21c92fb366319a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#add144149d7c5a692dd21c92fb366319a">Webserver</a> (int id)</td></tr>
+<tr class="memdesc:add144149d7c5a692dd21c92fb366319a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classWebserver.html" title="Represents a web server that can process requests.">Webserver</a> instance with a specified ID, initially not busy.  <a href="classWebserver.html#add144149d7c5a692dd21c92fb366319a">More...</a><br /></td></tr>
+<tr class="separator:add144149d7c5a692dd21c92fb366319a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7079b8cb6c02b653cc0c9266652ba47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#ae7079b8cb6c02b653cc0c9266652ba47">setRequest</a> (<a class="el" href="classRequest.html">Request</a> req)</td></tr>
+<tr class="memdesc:ae7079b8cb6c02b653cc0c9266652ba47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a request for the web server to process, setting it to busy.  <a href="classWebserver.html#ae7079b8cb6c02b653cc0c9266652ba47">More...</a><br /></td></tr>
+<tr class="separator:ae7079b8cb6c02b653cc0c9266652ba47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4632f99b969719d94eb0dcb616ae9312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRequest.html">Request</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#a4632f99b969719d94eb0dcb616ae9312">getRequest</a> ()</td></tr>
+<tr class="memdesc:a4632f99b969719d94eb0dcb616ae9312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current request being processed by the web server.  <a href="classWebserver.html#a4632f99b969719d94eb0dcb616ae9312">More...</a><br /></td></tr>
+<tr class="separator:a4632f99b969719d94eb0dcb616ae9312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e5f2cc6853ac0177a5131d6132c165"><td class="memItemLeft" align="right" valign="top"><a id="ad8e5f2cc6853ac0177a5131d6132c165"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#ad8e5f2cc6853ac0177a5131d6132c165">processRequest</a> ()</td></tr>
+<tr class="memdesc:ad8e5f2cc6853ac0177a5131d6132c165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the processing of the current request. This function simulates the processing of a request by the web server. <br /></td></tr>
+<tr class="separator:ad8e5f2cc6853ac0177a5131d6132c165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab24022731879a7f5ce09fd56f04fa11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#ab24022731879a7f5ce09fd56f04fa11d">setIsBusy</a> (bool busy)</td></tr>
+<tr class="memdesc:ab24022731879a7f5ce09fd56f04fa11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the busy status of the web server.  <a href="classWebserver.html#ab24022731879a7f5ce09fd56f04fa11d">More...</a><br /></td></tr>
+<tr class="separator:ab24022731879a7f5ce09fd56f04fa11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad4aa45c1016f57e8489d36c498fcc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#a9ad4aa45c1016f57e8489d36c498fcc0">isBusy</a> ()</td></tr>
+<tr class="memdesc:a9ad4aa45c1016f57e8489d36c498fcc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the busy status of the web server.  <a href="classWebserver.html#a9ad4aa45c1016f57e8489d36c498fcc0">More...</a><br /></td></tr>
+<tr class="separator:a9ad4aa45c1016f57e8489d36c498fcc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f04a31c62d0a208919b0ebd8547e80"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#aa1f04a31c62d0a208919b0ebd8547e80">isRequestDone</a> ()</td></tr>
+<tr class="memdesc:aa1f04a31c62d0a208919b0ebd8547e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current request has finished processing.  <a href="classWebserver.html#aa1f04a31c62d0a208919b0ebd8547e80">More...</a><br /></td></tr>
+<tr class="separator:aa1f04a31c62d0a208919b0ebd8547e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc3f73506968b010306163e8c8617d9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWebserver.html#abc3f73506968b010306163e8c8617d9b">getServerId</a> ()</td></tr>
+<tr class="memdesc:abc3f73506968b010306163e8c8617d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the server's unique identifier.  <a href="classWebserver.html#abc3f73506968b010306163e8c8617d9b">More...</a><br /></td></tr>
+<tr class="separator:abc3f73506968b010306163e8c8617d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a web server that can process requests. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a94634ea193283a70b40f1cf111b7cbb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94634ea193283a70b40f1cf111b7cbb6">&#9670;&nbsp;</a></span>get_curr_req()</h2>
+<p>This class models a web server which can be assigned requests to process. It keeps track of its busy status and the current request it is handling. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="add144149d7c5a692dd21c92fb366319a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add144149d7c5a692dd21c92fb366319a">&#9670;&nbsp;</a></span>Webserver()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classRequest.html">Request</a> Webserver::get_curr_req </td>
+          <td class="memname">Webserver::Webserver </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classWebserver.html" title="Represents a web server that can process requests.">Webserver</a> instance with a specified ID, initially not busy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The unique identifier for the web server. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4632f99b969719d94eb0dcb616ae9312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4632f99b969719d94eb0dcb616ae9312">&#9670;&nbsp;</a></span>getRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRequest.html">Request</a> Webserver::getRequest </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -119,18 +149,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Retrieves the current request being processed by the web server. </p>
-<dl class="section return"><dt>Returns</dt><dd>The current request. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The request currently being processed. </dd></dl>
 
 </div>
 </div>
-<a id="ac503bbab41fb0a3858fcaa0d7c10b42b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac503bbab41fb0a3858fcaa0d7c10b42b">&#9670;&nbsp;</a></span>get_is_busy()</h2>
+<a id="abc3f73506968b010306163e8c8617d9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc3f73506968b010306163e8c8617d9b">&#9670;&nbsp;</a></span>getServerId()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Webserver::get_is_busy </td>
+          <td class="memname">int Webserver::getServerId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the server's unique identifier. </p>
+<dl class="section return"><dt>Returns</dt><dd>The unique identifier of the web server. </dd></dl>
+
+</div>
+</div>
+<a id="a9ad4aa45c1016f57e8489d36c498fcc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ad4aa45c1016f57e8489d36c498fcc0">&#9670;&nbsp;</a></span>isBusy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Webserver::isBusy </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -139,18 +189,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Retrieves the busy status of the web server. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the web server is busy, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the web server is currently busy, false otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="a1a984d64acee6a5a583dcbf4ea4b259b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a984d64acee6a5a583dcbf4ea4b259b">&#9670;&nbsp;</a></span>request_is_done()</h2>
+<a id="aa1f04a31c62d0a208919b0ebd8547e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f04a31c62d0a208919b0ebd8547e80">&#9670;&nbsp;</a></span>isRequestDone()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Webserver::request_is_done </td>
+          <td class="memname">bool Webserver::isRequestDone </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -159,44 +209,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Checks if the current request has finished processing. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the request is done, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the request processing is complete, false otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="ad72f611ee5035d56ac64fa46fc7b5687"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad72f611ee5035d56ac64fa46fc7b5687">&#9670;&nbsp;</a></span>set_curr_req()</h2>
+<a id="ab24022731879a7f5ce09fd56f04fa11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab24022731879a7f5ce09fd56f04fa11d">&#9670;&nbsp;</a></span>setIsBusy()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Webserver::set_curr_req </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classRequest.html">Request</a>&#160;</td>
-          <td class="paramname"><em>req</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets the current request for the web server to process. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">req</td><td>The request to be processed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1874adf06a6c3fed43de656e97961f41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1874adf06a6c3fed43de656e97961f41">&#9670;&nbsp;</a></span>set_is_busy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Webserver::set_is_busy </td>
+          <td class="memname">void Webserver::setIsBusy </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>busy</em></td><td>)</td>
@@ -208,7 +232,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the busy status of the web server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">busy</td><td>The new busy status. </td></tr>
+    <tr><td class="paramname">busy</td><td>The new busy status of the web server. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae7079b8cb6c02b653cc0c9266652ba47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7079b8cb6c02b653cc0c9266652ba47">&#9670;&nbsp;</a></span>setRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Webserver::setRequest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRequest.html">Request</a>&#160;</td>
+          <td class="paramname"><em>req</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assigns a request for the web server to process, setting it to busy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The request to be processed by the web server. </td></tr>
   </table>
   </dd>
 </dl>

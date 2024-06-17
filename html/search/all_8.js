@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['webserver_28',['Webserver',['../classWebserver.html',1,'Webserver'],['../classWebserver.html#ac2a6f51bcc54efaaf5f4773a7c24f009',1,'Webserver::Webserver()']]],
-  ['webserver_2eh_29',['Webserver.h',['../Webserver_8h.html',1,'']]]
+  ['sendrequesttoserver_25',['sendRequestToServer',['../classLoadBalancer.html#a2b7fc4e11b7c0b53e0cdb165a95bacda',1,'LoadBalancer']]],
+  ['setisbusy_26',['setIsBusy',['../classWebserver.html#ab24022731879a7f5ce09fd56f04fa11d',1,'Webserver']]],
+  ['setrequest_27',['setRequest',['../classWebserver.html#ae7079b8cb6c02b653cc0c9266652ba47',1,'Webserver']]]
 ];

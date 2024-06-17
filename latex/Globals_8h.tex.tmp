@@ -7,6 +7,12 @@ Contains global variables and definitions used throughout the application.
 
 This graph shows which files directly or indirectly include this file\+:
 % FIG 0
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{Globals_8h_ab7965019c489b626f3810209fae35df4}\label{Globals_8h_ab7965019c489b626f3810209fae35df4}} 
+int \mbox{\hyperlink{Globals_8h_ab7965019c489b626f3810209fae35df4}{clock\+\_\+cycle}}
+\begin{DoxyCompactList}\small\item\em Represents the current clock cycle of the application, used for timing and control across various components. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

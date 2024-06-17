@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['max_5frequests_5fper_5fserver_15',['MAX_REQUESTS_PER_SERVER',['../LoadBalancer_8h.html#a362c1232873950d65ea8068e6e961c16',1,'LoadBalancer.h']]],
-  ['min_5frequests_5fper_5fserver_16',['MIN_REQUESTS_PER_SERVER',['../LoadBalancer_8h.html#a5c3b4414a351bdc0f8b4256f2e19e680',1,'LoadBalancer.h']]]
+  ['loadbalancer_16',['LoadBalancer',['../classLoadBalancer.html',1,'LoadBalancer'],['../classLoadBalancer.html#a6e6669a6a4f0c3df345a13246b17a84b',1,'LoadBalancer::LoadBalancer()'],['../classLoadBalancer.html#ab13e6a94ef6b941498caf726e3843eb9',1,'LoadBalancer::LoadBalancer(int num_servers)']]],
+  ['loadbalancer_2eh_17',['LoadBalancer.h',['../LoadBalancer_8h.html',1,'']]]
 ];

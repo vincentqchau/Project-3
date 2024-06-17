@@ -12,87 +12,106 @@ Represents a web server that can process requests.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classWebserver_ac2a6f51bcc54efaaf5f4773a7c24f009}\label{classWebserver_ac2a6f51bcc54efaaf5f4773a7c24f009}} 
-\mbox{\hyperlink{classWebserver_ac2a6f51bcc54efaaf5f4773a7c24f009}{Webserver}} ()
-\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classWebserver}{Webserver}} instance, initially not busy. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classWebserver_ad72f611ee5035d56ac64fa46fc7b5687}{set\+\_\+curr\+\_\+req}} (\mbox{\hyperlink{classRequest}{Request}} req)
-\begin{DoxyCompactList}\small\item\em Sets the current request for the web server to process. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classRequest}{Request}} \mbox{\hyperlink{classWebserver_a94634ea193283a70b40f1cf111b7cbb6}{get\+\_\+curr\+\_\+req}} ()
+\mbox{\hyperlink{classWebserver_add144149d7c5a692dd21c92fb366319a}{Webserver}} (int id)
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classWebserver}{Webserver}} instance with a specified ID, initially not busy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWebserver_ae7079b8cb6c02b653cc0c9266652ba47}{set\+Request}} (\mbox{\hyperlink{classRequest}{Request}} req)
+\begin{DoxyCompactList}\small\item\em Assigns a request for the web server to process, setting it to busy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequest}{Request}} \mbox{\hyperlink{classWebserver_a4632f99b969719d94eb0dcb616ae9312}{get\+Request}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the current request being processed by the web server. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classWebserver_a3a5ab2413bd450a99264faf54d0b255a}\label{classWebserver_a3a5ab2413bd450a99264faf54d0b255a}} 
-void \mbox{\hyperlink{classWebserver_a3a5ab2413bd450a99264faf54d0b255a}{process\+\_\+req}} ()
-\begin{DoxyCompactList}\small\item\em Initiates the processing of the current request. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classWebserver_a1874adf06a6c3fed43de656e97961f41}{set\+\_\+is\+\_\+busy}} (bool busy)
+\mbox{\Hypertarget{classWebserver_ad8e5f2cc6853ac0177a5131d6132c165}\label{classWebserver_ad8e5f2cc6853ac0177a5131d6132c165}} 
+void \mbox{\hyperlink{classWebserver_ad8e5f2cc6853ac0177a5131d6132c165}{process\+Request}} ()
+\begin{DoxyCompactList}\small\item\em Initiates the processing of the current request. This function simulates the processing of a request by the web server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWebserver_ab24022731879a7f5ce09fd56f04fa11d}{set\+Is\+Busy}} (bool busy)
 \begin{DoxyCompactList}\small\item\em Sets the busy status of the web server. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classWebserver_ac503bbab41fb0a3858fcaa0d7c10b42b}{get\+\_\+is\+\_\+busy}} ()
+bool \mbox{\hyperlink{classWebserver_a9ad4aa45c1016f57e8489d36c498fcc0}{is\+Busy}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the busy status of the web server. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classWebserver_a1a984d64acee6a5a583dcbf4ea4b259b}{request\+\_\+is\+\_\+done}} ()
-\begin{DoxyCompactList}\small\item\em Checks if the current request has finished processing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{classWebserver_aa1f04a31c62d0a208919b0ebd8547e80}{is\+Request\+Done}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the current request has finished processing. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWebserver_abc3f73506968b010306163e8c8617d9b}{get\+Server\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the server\textquotesingle{}s unique identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Represents a web server that can process requests. 
 
+This class models a web server which can be assigned requests to process. It keeps track of its busy status and the current request it is handling. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWebserver_add144149d7c5a692dd21c92fb366319a}\label{classWebserver_add144149d7c5a692dd21c92fb366319a}} 
+\index{Webserver@{Webserver}!Webserver@{Webserver}}
+\index{Webserver@{Webserver}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{Webserver()}{Webserver()}}
+{\footnotesize\ttfamily Webserver\+::\+Webserver (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \mbox{\hyperlink{classWebserver}{Webserver}} instance with a specified ID, initially not busy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The unique identifier for the web server. \\
+\hline
+\end{DoxyParams}
+
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classWebserver_a94634ea193283a70b40f1cf111b7cbb6}\label{classWebserver_a94634ea193283a70b40f1cf111b7cbb6}} 
-\index{Webserver@{Webserver}!get\_curr\_req@{get\_curr\_req}}
-\index{get\_curr\_req@{get\_curr\_req}!Webserver@{Webserver}}
-\doxysubsubsection{\texorpdfstring{get\_curr\_req()}{get\_curr\_req()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classRequest}{Request}} Webserver\+::get\+\_\+curr\+\_\+req (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classWebserver_a4632f99b969719d94eb0dcb616ae9312}\label{classWebserver_a4632f99b969719d94eb0dcb616ae9312}} 
+\index{Webserver@{Webserver}!getRequest@{getRequest}}
+\index{getRequest@{getRequest}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{getRequest()}{getRequest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRequest}{Request}} Webserver\+::get\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Retrieves the current request being processed by the web server. 
 
 \begin{DoxyReturn}{Returns}
-The current request. 
+The request currently being processed. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classWebserver_ac503bbab41fb0a3858fcaa0d7c10b42b}\label{classWebserver_ac503bbab41fb0a3858fcaa0d7c10b42b}} 
-\index{Webserver@{Webserver}!get\_is\_busy@{get\_is\_busy}}
-\index{get\_is\_busy@{get\_is\_busy}!Webserver@{Webserver}}
-\doxysubsubsection{\texorpdfstring{get\_is\_busy()}{get\_is\_busy()}}
-{\footnotesize\ttfamily bool Webserver\+::get\+\_\+is\+\_\+busy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classWebserver_abc3f73506968b010306163e8c8617d9b}\label{classWebserver_abc3f73506968b010306163e8c8617d9b}} 
+\index{Webserver@{Webserver}!getServerId@{getServerId}}
+\index{getServerId@{getServerId}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{getServerId()}{getServerId()}}
+{\footnotesize\ttfamily int Webserver\+::get\+Server\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the server\textquotesingle{}s unique identifier. 
+
+\begin{DoxyReturn}{Returns}
+The unique identifier of the web server. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWebserver_a9ad4aa45c1016f57e8489d36c498fcc0}\label{classWebserver_a9ad4aa45c1016f57e8489d36c498fcc0}} 
+\index{Webserver@{Webserver}!isBusy@{isBusy}}
+\index{isBusy@{isBusy}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{isBusy()}{isBusy()}}
+{\footnotesize\ttfamily bool Webserver\+::is\+Busy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Retrieves the busy status of the web server. 
 
 \begin{DoxyReturn}{Returns}
-True if the web server is busy, false otherwise. 
+True if the web server is currently busy, false otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classWebserver_a1a984d64acee6a5a583dcbf4ea4b259b}\label{classWebserver_a1a984d64acee6a5a583dcbf4ea4b259b}} 
-\index{Webserver@{Webserver}!request\_is\_done@{request\_is\_done}}
-\index{request\_is\_done@{request\_is\_done}!Webserver@{Webserver}}
-\doxysubsubsection{\texorpdfstring{request\_is\_done()}{request\_is\_done()}}
-{\footnotesize\ttfamily bool Webserver\+::request\+\_\+is\+\_\+done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classWebserver_aa1f04a31c62d0a208919b0ebd8547e80}\label{classWebserver_aa1f04a31c62d0a208919b0ebd8547e80}} 
+\index{Webserver@{Webserver}!isRequestDone@{isRequestDone}}
+\index{isRequestDone@{isRequestDone}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{isRequestDone()}{isRequestDone()}}
+{\footnotesize\ttfamily bool Webserver\+::is\+Request\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Checks if the current request has finished processing. 
 
 \begin{DoxyReturn}{Returns}
-True if the request is done, false otherwise. 
+True if the request processing is complete, false otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classWebserver_ad72f611ee5035d56ac64fa46fc7b5687}\label{classWebserver_ad72f611ee5035d56ac64fa46fc7b5687}} 
-\index{Webserver@{Webserver}!set\_curr\_req@{set\_curr\_req}}
-\index{set\_curr\_req@{set\_curr\_req}!Webserver@{Webserver}}
-\doxysubsubsection{\texorpdfstring{set\_curr\_req()}{set\_curr\_req()}}
-{\footnotesize\ttfamily void Webserver\+::set\+\_\+curr\+\_\+req (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRequest}{Request}}}]{req }\end{DoxyParamCaption})}
-
-
-
-Sets the current request for the web server to process. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em req} & The request to be processed. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classWebserver_a1874adf06a6c3fed43de656e97961f41}\label{classWebserver_a1874adf06a6c3fed43de656e97961f41}} 
-\index{Webserver@{Webserver}!set\_is\_busy@{set\_is\_busy}}
-\index{set\_is\_busy@{set\_is\_busy}!Webserver@{Webserver}}
-\doxysubsubsection{\texorpdfstring{set\_is\_busy()}{set\_is\_busy()}}
-{\footnotesize\ttfamily void Webserver\+::set\+\_\+is\+\_\+busy (\begin{DoxyParamCaption}\item[{bool}]{busy }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classWebserver_ab24022731879a7f5ce09fd56f04fa11d}\label{classWebserver_ab24022731879a7f5ce09fd56f04fa11d}} 
+\index{Webserver@{Webserver}!setIsBusy@{setIsBusy}}
+\index{setIsBusy@{setIsBusy}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{setIsBusy()}{setIsBusy()}}
+{\footnotesize\ttfamily void Webserver\+::set\+Is\+Busy (\begin{DoxyParamCaption}\item[{bool}]{busy }\end{DoxyParamCaption})}
 
 
 
@@ -100,7 +119,22 @@ Sets the busy status of the web server.
 
 
 \begin{DoxyParams}{Parameters}
-{\em busy} & The new busy status. \\
+{\em busy} & The new busy status of the web server. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWebserver_ae7079b8cb6c02b653cc0c9266652ba47}\label{classWebserver_ae7079b8cb6c02b653cc0c9266652ba47}} 
+\index{Webserver@{Webserver}!setRequest@{setRequest}}
+\index{setRequest@{setRequest}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{setRequest()}{setRequest()}}
+{\footnotesize\ttfamily void Webserver\+::set\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRequest}{Request}}}]{req }\end{DoxyParamCaption})}
+
+
+
+Assigns a request for the web server to process, setting it to busy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The request to be processed by the web server. \\
 \hline
 \end{DoxyParams}
 

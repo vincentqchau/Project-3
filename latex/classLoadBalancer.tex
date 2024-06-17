@@ -15,34 +15,52 @@ Manages a pool of web servers, distributing incoming requests among them to bala
 \mbox{\Hypertarget{classLoadBalancer_a6e6669a6a4f0c3df345a13246b17a84b}\label{classLoadBalancer_a6e6669a6a4f0c3df345a13246b17a84b}} 
 \mbox{\hyperlink{classLoadBalancer_a6e6669a6a4f0c3df345a13246b17a84b}{Load\+Balancer}} ()
 \begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} instance with initial settings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLoadBalancer_ab13e6a94ef6b941498caf726e3843eb9}{Load\+Balancer}} (int num\+\_\+servers)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} with a specified number of servers. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLoadBalancer_ac1e1ed080cba145743b288f0a5b21307}{add\+Request}} (\mbox{\hyperlink{classRequest}{Request}} req)
 \begin{DoxyCompactList}\small\item\em Adds a new request to the queue to be processed. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLoadBalancer_a11084cbdda9101abfc893a71f046045b}\label{classLoadBalancer_a11084cbdda9101abfc893a71f046045b}} 
 void \mbox{\hyperlink{classLoadBalancer_a11084cbdda9101abfc893a71f046045b}{process\+Requests}} ()
 \begin{DoxyCompactList}\small\item\em Processes and distributes requests from the queue to available servers. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classLoadBalancer_a7efeb4350d08ca894a9e217c245b7425}{add\+Server}} (\mbox{\hyperlink{classWebserver}{Webserver}} $\ast$server)
-\begin{DoxyCompactList}\small\item\em Adds a new server to the pool of servers managed by the load balancer. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLoadBalancer_a2f77281d168914e6bbe1857a0cd84d25}\label{classLoadBalancer_a2f77281d168914e6bbe1857a0cd84d25}} 
-void \mbox{\hyperlink{classLoadBalancer_a2f77281d168914e6bbe1857a0cd84d25}{remove\+Server}} ()
-\begin{DoxyCompactList}\small\item\em Removes a server from the pool, typically used when a server is down or being decommissioned. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLoadBalancer_aff44540ffdb26bff9ff3cd890f667c5b}\label{classLoadBalancer_aff44540ffdb26bff9ff3cd890f667c5b}} 
 void \mbox{\hyperlink{classLoadBalancer_aff44540ffdb26bff9ff3cd890f667c5b}{adjust\+Servers}} ()
 \begin{DoxyCompactList}\small\item\em Dynamically adjusts the number of servers based on the current load, adding or removing servers as needed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLoadBalancer_a2b7fc4e11b7c0b53e0cdb165a95bacda}{send\+Request\+To\+Server}} (\mbox{\hyperlink{classWebserver}{Webserver}} $\ast$server)
 \begin{DoxyCompactList}\small\item\em Sends a request to a specified server. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classLoadBalancer_a78eed4bcc19bb5e2620e6b6f82b75735}{log\+Request\+Start}} (\mbox{\hyperlink{classRequest}{Request}} req)
-\begin{DoxyCompactList}\small\item\em Logs the start of a request processing for monitoring and debugging purposes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classLoadBalancer_a2f9be4e46d36b9bd2022f420e045b145}{log\+Request\+Finish}} (\mbox{\hyperlink{classRequest}{Request}} req)
-\begin{DoxyCompactList}\small\item\em Logs the completion of a request processing for monitoring and debugging purposes. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLoadBalancer_aef36343e996355888619a1559dddf5d8}\label{classLoadBalancer_aef36343e996355888619a1559dddf5d8}} 
 void \mbox{\hyperlink{classLoadBalancer_aef36343e996355888619a1559dddf5d8}{clear\+Servers}} ()
-\begin{DoxyCompactList}\small\item\em Clears all servers from the load balancer, used during shutdown or reset procedures. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classLoadBalancer_ade661500dac55cf1afcda5ce83fc7138}{get\+Wait\+Time}} ()
-\begin{DoxyCompactList}\small\item\em Retrieves the total wait time for all requests in the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clears all servers from the pool, typically used for cleanup or reinitialization. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLoadBalancer_a32f3f33a319622cf83b41cb9fcd09d3c}\label{classLoadBalancer_a32f3f33a319622cf83b41cb9fcd09d3c}} 
+void \mbox{\hyperlink{classLoadBalancer_a32f3f33a319622cf83b41cb9fcd09d3c}{add\+Server}} ()
+\begin{DoxyCompactList}\small\item\em Adds a new server to the pool, increasing the capacity for handling requests. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLoadBalancer_ac104e708c3d8a6984122d9a0df13b80b}{get\+Queue\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of requests currently waiting in the queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLoadBalancer_a8e73dc5d30ddba1a041dc005e42726a8}{get\+Server\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Returns the current number of servers in the pool. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classLoadBalancer_ab132785ef9e632015af163331177af8e}{all\+\_\+servers\+\_\+idle}} ()
+\begin{DoxyCompactList}\small\item\em Checks if all servers are currently idle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Manages a pool of web servers, distributing incoming requests among them to balance the load. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLoadBalancer_ab13e6a94ef6b941498caf726e3843eb9}\label{classLoadBalancer_ab13e6a94ef6b941498caf726e3843eb9}} 
+\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{LoadBalancer()}{LoadBalancer()}}
+{\footnotesize\ttfamily Load\+Balancer\+::\+Load\+Balancer (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+servers }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} with a specified number of servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+servers} & Initial number of servers to be added to the pool. \\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classLoadBalancer_ac1e1ed080cba145743b288f0a5b21307}\label{classLoadBalancer_ac1e1ed080cba145743b288f0a5b21307}} 
@@ -60,64 +78,45 @@ Adds a new request to the queue to be processed.
 {\em req} & The request to be added. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classLoadBalancer_a7efeb4350d08ca894a9e217c245b7425}\label{classLoadBalancer_a7efeb4350d08ca894a9e217c245b7425}} 
-\index{LoadBalancer@{LoadBalancer}!addServer@{addServer}}
-\index{addServer@{addServer}!LoadBalancer@{LoadBalancer}}
-\doxysubsubsection{\texorpdfstring{addServer()}{addServer()}}
-{\footnotesize\ttfamily void Load\+Balancer\+::add\+Server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWebserver}{Webserver}} $\ast$}]{server }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classLoadBalancer_ab132785ef9e632015af163331177af8e}\label{classLoadBalancer_ab132785ef9e632015af163331177af8e}} 
+\index{LoadBalancer@{LoadBalancer}!all\_servers\_idle@{all\_servers\_idle}}
+\index{all\_servers\_idle@{all\_servers\_idle}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{all\_servers\_idle()}{all\_servers\_idle()}}
+{\footnotesize\ttfamily bool Load\+Balancer\+::all\+\_\+servers\+\_\+idle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Adds a new server to the pool of servers managed by the load balancer. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em server} & Pointer to the server to be added. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classLoadBalancer_ade661500dac55cf1afcda5ce83fc7138}\label{classLoadBalancer_ade661500dac55cf1afcda5ce83fc7138}} 
-\index{LoadBalancer@{LoadBalancer}!getWaitTime@{getWaitTime}}
-\index{getWaitTime@{getWaitTime}!LoadBalancer@{LoadBalancer}}
-\doxysubsubsection{\texorpdfstring{getWaitTime()}{getWaitTime()}}
-{\footnotesize\ttfamily int Load\+Balancer\+::get\+Wait\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Retrieves the total wait time for all requests in the queue. 
+Checks if all servers are currently idle. 
 
 \begin{DoxyReturn}{Returns}
-The total wait time. 
+True if all servers are idle, false otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classLoadBalancer_a2f9be4e46d36b9bd2022f420e045b145}\label{classLoadBalancer_a2f9be4e46d36b9bd2022f420e045b145}} 
-\index{LoadBalancer@{LoadBalancer}!logRequestFinish@{logRequestFinish}}
-\index{logRequestFinish@{logRequestFinish}!LoadBalancer@{LoadBalancer}}
-\doxysubsubsection{\texorpdfstring{logRequestFinish()}{logRequestFinish()}}
-{\footnotesize\ttfamily void Load\+Balancer\+::log\+Request\+Finish (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRequest}{Request}}}]{req }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classLoadBalancer_ac104e708c3d8a6984122d9a0df13b80b}\label{classLoadBalancer_ac104e708c3d8a6984122d9a0df13b80b}} 
+\index{LoadBalancer@{LoadBalancer}!getQueueSize@{getQueueSize}}
+\index{getQueueSize@{getQueueSize}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{getQueueSize()}{getQueueSize()}}
+{\footnotesize\ttfamily int Load\+Balancer\+::get\+Queue\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Logs the completion of a request processing for monitoring and debugging purposes. 
+Returns the number of requests currently waiting in the queue. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em req} & The request that has finished processing. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classLoadBalancer_a78eed4bcc19bb5e2620e6b6f82b75735}\label{classLoadBalancer_a78eed4bcc19bb5e2620e6b6f82b75735}} 
-\index{LoadBalancer@{LoadBalancer}!logRequestStart@{logRequestStart}}
-\index{logRequestStart@{logRequestStart}!LoadBalancer@{LoadBalancer}}
-\doxysubsubsection{\texorpdfstring{logRequestStart()}{logRequestStart()}}
-{\footnotesize\ttfamily void Load\+Balancer\+::log\+Request\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRequest}{Request}}}]{req }\end{DoxyParamCaption})}
+\begin{DoxyReturn}{Returns}
+The size of the request queue. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLoadBalancer_a8e73dc5d30ddba1a041dc005e42726a8}\label{classLoadBalancer_a8e73dc5d30ddba1a041dc005e42726a8}} 
+\index{LoadBalancer@{LoadBalancer}!getServerCount@{getServerCount}}
+\index{getServerCount@{getServerCount}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{getServerCount()}{getServerCount()}}
+{\footnotesize\ttfamily int Load\+Balancer\+::get\+Server\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Logs the start of a request processing for monitoring and debugging purposes. 
+Returns the current number of servers in the pool. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em req} & The request that has started processing. \\
-\hline
-\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of servers. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classLoadBalancer_a2b7fc4e11b7c0b53e0cdb165a95bacda}\label{classLoadBalancer_a2b7fc4e11b7c0b53e0cdb165a95bacda}} 
 \index{LoadBalancer@{LoadBalancer}!sendRequestToServer@{sendRequestToServer}}
 \index{sendRequestToServer@{sendRequestToServer}!LoadBalancer@{LoadBalancer}}

@@ -4,17 +4,16 @@
 #include <random>
 #include <vector>
 #include <string>
+#include <fstream>
 
 #include "Webserver.h"
 #include "LoadBalancer.h"
 #include "Request.h"
 #include "Globals.h"
 
-#define MAX_LOAD_PER_BALANCER 20
-
 using namespace std;
 
-int clock_cycle = 1;
+int clock_cycle = 0;
 
 string generateIP() {
     random_device rd;
@@ -27,7 +26,7 @@ string generateIP() {
 Request generateRequests() {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(5, 10);
+    uniform_int_distribution<> dis(5, 500);
     int processTime = dis(gen);
     Request req = Request(generateIP(), generateIP(), processTime);
     return req;
@@ -42,38 +41,53 @@ vector<Request> generateRequests(int numRequests) {
     return reqs;
 }
 
-void addRequestToBalancer(vector<LoadBalancer>& balancers, Request req) {
-    if(balancers.empty()) return;
-    LoadBalancer* minBalancer = &balancers[0];
-    int minWaitTime = minBalancer->getWaitTime();
-    for(LoadBalancer& balancer : balancers) { // Use reference here
-        if(balancer.getWaitTime() < minWaitTime) {
-            minBalancer = &balancer;
-            minWaitTime = balancer.getWaitTime();
-        }
+void simulate(int time, LoadBalancer& balancer) {
+    //log initial state in log file
+    std::ofstream logFile("log.txt", std::ios::app);
+    if(logFile.is_open()) {
+        logFile << "Simulation has begun" << endl;
+        logFile << "Server count: " << balancer.getServerCount() << endl;
+        logFile << "Simulation Duration: " << time << endl;
+        logFile << "Starting queue size: " << balancer.getQueueSize() << endl;
+        logFile.close();
     }
-    minBalancer->addRequest(req);
-}
+    while(clock_cycle < time) {
+        balancer.processRequests();
+        //only adjust every 100 cycles
 
-void simulate(int time, vector<LoadBalancer>& balancers) {
-    while(clock_cycle <= time) {
-        for(LoadBalancer balancer : balancers) {
-            balancer.processRequests();
+        //60% chance of adjusting server
+        random_device rand;
+        mt19937 g(rand());
+        uniform_int_distribution<> dist(1, 10);
+        if(dist(g) <= 6) {
+            balancer.adjustServers();
         }
-        //randomly add new requests
-        //give 1/5 chance of a new request being made
+
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> dis(1, 5);
+        uniform_int_distribution<> dis(1, 100);
         if(dis(gen) == 1) {
             Request req = generateRequests();
-            addRequestToBalancer(balancers, req);
+            if(logFile.is_open()) {
+                logFile << "[" << clock_cycle << "] " << "New Request has been made from " << req.get_ip_in() << " to " << req.get_ip_out() << endl;
+                logFile.close();
+            }
         }
+
         clock_cycle++;     
     }
-    for(LoadBalancer balancer : balancers) {
-        balancer.clearServers();
-    } 
+    
+    bool allServersIdle = balancer.all_servers_idle();
+    balancer.clearServers();
+
+    std::ofstream finalLog("log.txt", std::ios::app);
+    if(finalLog.is_open()) {
+        finalLog << "Simulation ended" << endl;
+        finalLog << "All servers idle: " << (allServersIdle ? "true" : "false") << endl;
+        finalLog << "Ending queue size: " << balancer.getQueueSize() << endl;
+        finalLog << "Ending server count: " << balancer.getServerCount() << endl;
+        finalLog.close();
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -92,26 +106,13 @@ int main(int argc, char* argv[]) {
     if(numServers == 0 || time == 0) {
         cout << "Usage: ./Driver -s <servers> -t <time>" << endl;
     } else {
-        //create load balancers
-        vector<LoadBalancer> balancers;
-        int totalLoad = numServers * 100;
-        int numBalancers = ceil(totalLoad / MAX_LOAD_PER_BALANCER);
-        for(int i = 0; i < numBalancers; i++) {
-            LoadBalancer balancer = LoadBalancer();
-            balancers.push_back(balancer);
+        LoadBalancer balancer = LoadBalancer(numServers);
+        //generate requests
+        vector<Request> reqs = generateRequests(numServers * 100);
+        for(Request req : reqs) {
+            balancer.addRequest(req);
         }
-        //add servers to balancers;
-        for(int i = 0; i < numServers; i++) {
-            Webserver* server = new Webserver();
-            balancers[i % numBalancers].addServer(server);
-        }
-        //create full qeuue of requests
-        vector<Request> requests = generateRequests(totalLoad);
-        //add requests to balancers
-        for(Request req : requests) {
-            addRequestToBalancer(balancers, req);
-        }
-        //simulate load balancing
-        simulate(time, balancers);
+        //start simulation
+        simulate(time, balancer);
     }
 }

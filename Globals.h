@@ -6,5 +6,6 @@
 
 /// @var extern int clock_cycle
 /// @brief Represents the current clock cycle of the application, used for timing and control across various components.
+extern int clock_cycle;
 
 #endif

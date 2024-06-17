@@ -4,107 +4,118 @@
 #include <iostream>
 
 #include "LoadBalancer.h"
+#include "Globals.h"
 
 using namespace std;
 
 LoadBalancer::LoadBalancer() {
+    LoadBalancer(1);
+}
+
+LoadBalancer::LoadBalancer(int num_servers) {
     servers = vector<Webserver*>();
     requests = queue<Request>();
-    waitTime = 0;
+    for(int i = 0; i < num_servers; i++) {
+        servers.push_back(new Webserver(i));
+    }
 }
-
-void LoadBalancer::addRequest(Request req) {
-    requests.push(req);
-    waitTime+=req.get_process_time();
-}
-
-void LoadBalancer::sendRequestToServer(Webserver* server) {
-    Request next_req = requests.front();
-    server->set_curr_req(next_req);
-    waitTime-=next_req.get_process_time();
-    server-> set_is_busy(true);
-    requests.pop();
-    //log request in text file
-    logRequestStart(next_req);
-} 
 
 void LoadBalancer::processRequests() {
     for (int i = 0; i < (int)(servers.size()); i++) {
-        if(!servers[i]->get_is_busy() && !requests.empty()) {
+        if(!servers[i]->isBusy() && !requests.empty()) {
             sendRequestToServer(servers[i]);
         } else {
-            servers[i]->process_req();
-            if(servers[i]->request_is_done()) {
-                logRequestFinish(servers[i]->get_curr_req());
+            servers[i]->processRequest();
+            if(servers[i]->isRequestDone()) {
+                //log request
+                std::ofstream logFile("log.txt", std::ios::app);
+                if(logFile.is_open()) {
+                    logFile <<  "[" << clock_cycle << "] " << "SERVER " << servers[i]->getServerId() << " completed request." << endl;
+                }
                 if(!requests.empty()) {
                     sendRequestToServer(servers[i]);
                 } else {
-                    servers[i]->set_curr_req(Request());
-                    servers[i]->set_is_busy(false);
+                    servers[i]->setRequest(Request());
+                    servers[i]->setIsBusy(false);
                 }
             }
         }
     }
 }
 
+void LoadBalancer::sendRequestToServer(Webserver* server) {
+    Request next_req = requests.front();
+    server->setRequest(next_req);
+    server->setIsBusy(true);
+    requests.pop();
+    //log request
+    std::ofstream logFile("log.txt", std::ios::app);
+    if(logFile.is_open()) {
+        logFile << "[" << clock_cycle << "] " << "Request from " << next_req.get_ip_in() << " to " << next_req.get_ip_out() << " sent to SERVER "  << server->getServerId() << " for DURATION " << next_req.get_process_time() << endl;
+    }
+} 
+
 void LoadBalancer::adjustServers() {
-    int busyServers = count_if(servers.begin(), servers.end(), [](Webserver* server){ return server->get_is_busy(); });
-    int totalServers = servers.size();
-    float busyPercentage = static_cast<float>(busyServers) / totalServers;
-
-    // Thresholds
-    const float scaleUpThreshold = 1.0; // 100% busy
-    const float scaleDownThreshold = 0.5; // 50% busy
-
-    // Scale up if all servers are busy
-    if (busyPercentage >= scaleUpThreshold) {
-        addServer(new Webserver());
+    //count how many servers are busy
+    int busyServers = 0;
+    for(Webserver* server : servers) {
+        if(server->isBusy()) {
+            busyServers++;
+        }
     }
-    // Scale down if less than 50% servers are busy, ensuring at least one server remains
-    else if (busyPercentage <= scaleDownThreshold && totalServers > 1) {
-        removeServer();
-    }
-}
-
-void LoadBalancer::addServer(Webserver* server) {
-    servers.push_back(server);
-}
-
-
-void LoadBalancer::removeServer() {
-    // Remove the first idle server found
-    auto it = find_if(servers.begin(), servers.end(), [](Webserver* server){ return !server->get_is_busy(); });
-    if (it != servers.end()) {
-        delete *it; // Delete the dynamically allocated Webserver object
-        servers.erase(it); // Remove the pointer from the vector
-    }
-}
-
-void LoadBalancer::logRequestStart(Request req) {
-    //write to log.txt file
-    std::ofstream logFile("log.txt", std::ios::app);
-    if(logFile.is_open()) {
-        logFile << "[" << clock_cycle << "] START Request from " << req.get_ip_in() << " to " << req.get_ip_out() << endl;
-        logFile.close(); 
+    int max_servers = MAX_SERVERS;
+    if(busyServers == (int)servers.size() && (int)servers.size() < max_servers) {
+        servers.push_back(new Webserver(servers.size()-1));
+        //log server addition
+        std::ofstream logFile("log.txt", std::ios::app);
+        if(logFile.is_open()) {
+            logFile << "[" << clock_cycle << "] " << "SERVER" << servers.size()-1 << " has been created." << endl;
+        }
+    } else if(busyServers < (int)(servers.size()/10) && servers.size() > 1) {
+        //find a non busy server to remove
+        for(Webserver* server : servers) {
+            if(!server->isBusy()) {
+                servers.erase(std::remove(servers.begin(), servers.end(), server), servers.end());
+                delete server;
+                //log server removal
+                std::ofstream logFile("log.txt", std::ios::app);
+                if(logFile.is_open()) {
+                    logFile << "[" << clock_cycle << "] " << "SERVER" << servers.size()-1 << " has been removed." << endl;
+                }
+                break;
+            }
+        }
     }
 }
 
-void LoadBalancer::logRequestFinish(Request req) {
-    std::ofstream logFile("log.txt", std::ios::app);
-    if(logFile.is_open()) {
-        logFile << "[" << clock_cycle << "] FINISH Request from " << req.get_ip_in() << " to " << req.get_ip_out() << endl;
-        logFile.close(); 
+bool LoadBalancer::all_servers_idle() {
+    for(Webserver* server : servers) {
+        if(server->isBusy()) {
+            return false;
+        }
     }
+    return true;
 }
 
 void LoadBalancer::clearServers() {
     for(Webserver* server : servers) {
+        std::ofstream logFile("log.txt", std::ios::app);
+        if(logFile.is_open()) {
+            logFile << "[" << clock_cycle << "] " << "SERVER" << server->getServerId() << " has been deallocated" << endl;
+        }
         delete server;
     }
     servers.clear();
 }
 
-int LoadBalancer::getWaitTime() {
-    return waitTime;
+void LoadBalancer::addRequest(Request req) {
+    requests.push(req);
 }
 
+int LoadBalancer::getQueueSize() {
+    return requests.size();
+}
+
+int LoadBalancer::getServerCount() {
+    return servers.size();
+}

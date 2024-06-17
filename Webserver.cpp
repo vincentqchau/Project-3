@@ -3,31 +3,36 @@
 
 using namespace std;
 
-Webserver::Webserver() {
-    curr_req = Request();
-    is_busy = false;
+Webserver::Webserver(int id) {
+    req = Request();
+    busy = false;
+    serverId = id;
 }
 
-void Webserver::set_curr_req(Request req) {
-    curr_req = req;
+void Webserver::setRequest(Request req) {
+    this->req = req;
 }
 
-Request Webserver::get_curr_req() {
-    return curr_req;
+Request Webserver::getRequest() {
+    return req;
 }
 
-void Webserver::process_req() {
-    curr_req.process();
+void Webserver::processRequest() {
+    req.process();
 }
 
-bool Webserver::request_is_done() {
-    return curr_req.get_process_time() == 0;
+bool Webserver::isRequestDone() {
+    return req.get_process_time() == 0;
 }
 
-void Webserver::set_is_busy(bool busy) {
-    is_busy = busy;
+void Webserver::setIsBusy(bool busy) {
+    this->busy = busy;
 }
 
-bool Webserver::get_is_busy() {
-    return is_busy;
+bool Webserver::isBusy() {
+    return busy;
+}
+
+int Webserver::getServerId() {
+    return serverId;
 }
